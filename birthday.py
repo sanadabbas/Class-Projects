@@ -5,6 +5,8 @@ def happy_birthday(name, day):
     return f"Hello how are you {name}! today {day} is the same day as your birthday"
 
 current_day = datetime.now().day  # This gives us current day of month (1-31)
+current_month = datetime.now().month
+current_year = datetime.now().year
 name = input("What is your name?: ")
 birthday = int(input("What day of the month were you born on (1-31)?: "))
 
@@ -21,11 +23,8 @@ else:
             days_until = birthday - current_day
         else:
             # If birthday has passed, calculate days until next year
-            days_until = (31 - current_day) + birthday
+            # Get the number of days in the current month
+            days_in_month = calendar.monthrange(current_year, current_month)[1]
+            days_until = (days_in_month - current_day) + birthday
             
-        print(f"The same date as your the same date as your birthday for this month will be in {days_until} days")
-        
-     
-
-
-
+        print(f"The same date as your birthday for this month will be in {days_until} days")
